@@ -17,7 +17,7 @@ export class ReversiProblem {
           const v: number | null = reversi.value(i, j)
           if (v !== null && v > 0) {
             win++
-            value = v
+            value = Math.max(value, v)
           }
         }
       }

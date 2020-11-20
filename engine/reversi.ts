@@ -178,8 +178,8 @@ export class Reversi {
       .fill(Disk.None)
       .map(
         (value: Disk, index: number): Disk => {
-          if (index < ret.length - 1) {
-            return ret[index]
+          if (index - this.size * this.size + ret.length - 1 >= 0) {
+            return ret[index - this.size * this.size + ret.length - 1]
           } else {
             return value
           }
