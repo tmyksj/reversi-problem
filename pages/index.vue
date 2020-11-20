@@ -1,27 +1,11 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">reversi-problem</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    <h1 class="header">
+      <span class="header-term">Reversi</span>
+      <span class="header-term">Problem</span>
+    </h1>
+    <Hr />
+    <NuxtLink class="button" to="/random">Random Problem</NuxtLink>
   </div>
 </template>
 
@@ -31,35 +15,32 @@ import Vue from 'vue'
 export default Vue.extend({})
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+<style scoped>
+.button {
+  border: thin solid #063c06;
+  border-radius: 0.25rem;
+  color: #063c06;
+  display: block;
+  font-size: 1.4rem;
+  margin: 2rem 0;
+  padding: 0.8rem 2rem;
+  text-decoration: none;
 }
 
-.title {
+.container {
+  margin-top: 4rem;
+}
+
+.header {
+  color: #063c06;
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
   font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
+  font-size: 3rem;
   letter-spacing: 1px;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+.header-term {
+  display: block;
 }
 </style>
