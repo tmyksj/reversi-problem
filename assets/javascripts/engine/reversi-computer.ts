@@ -1,4 +1,4 @@
-import { Reversi } from '~/engine/reversi'
+import { Reversi } from '~/assets/javascripts/engine/reversi'
 
 export class ReversiComputer {
   public static put(reversi: Reversi): Reversi {

@@ -45,5 +45,17 @@ export default {
   axios: {},
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {},
+  build: {
+    extend(config, { isClient }) {
+      // Extend only webpack config for client-bundle
+      if (isClient) {
+        config.module.rules.push({
+          test: /\.worker\.js$/,
+          use: {
+            loader: 'worker-loader',
+          },
+        })
+      }
+    },
+  },
 }

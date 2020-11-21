@@ -60,8 +60,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Reversi } from '~/engine/reversi'
-import { ReversiComputer } from '~/engine/reversi-computer'
+import { Reversi } from '~/assets/javascripts/engine/reversi'
+import { ReversiComputer } from '~/assets/javascripts/engine/reversi-computer'
 
 export default Vue.extend({
   data() {

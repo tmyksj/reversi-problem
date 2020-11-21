@@ -1,4 +1,4 @@
-import { ReversiError } from '~/engine/reversi-error'
+import { ReversiError } from '~/assets/javascripts/engine/reversi-error'
 
 type Count = {
   None: number
