@@ -58,4 +58,12 @@ export default {
       }
     },
   },
+
+  generate: {
+    fallback: true,
+  },
+
+  router: {
+    base: process.env.DEPLOY_ENV === 'GH_PAGES' ? '/reversi-problem/' : '',
+  },
 }
