@@ -55,9 +55,10 @@ export class Reversi {
     for (let i: number = 0; i < Reversi.size; i++) {
       for (let j: number = 0; j < Reversi.size; j++) {
         if (Reversi.isReversible(this._board, this._turn, i, j)) {
-          const r: Count = Reversi.dfs(this.put(i, j))
-          value[Reversi.pos(i, j)] =
-            r[this._turn] - r[this._turn === Disk.Dark ? Disk.Light : Disk.Dark]
+          value[Reversi.pos(i, j)] = Reversi.alphaBeta(
+            this.put(i, j),
+            this._turn
+          )
         }
       }
     }
@@ -211,41 +212,52 @@ export class Reversi {
     return new Reversi(board, turn, value)
   }
 
-  private static dfs(reversi: Reversi): Count {
+  private static alphaBeta(
+    reversi: Reversi,
+    turn: Disk,
+    alpha: number = -Infinity,
+    beta: number = Infinity
+  ): number {
     if (reversi._turn === Disk.None) {
-      return {
-        None: 0,
-        Dark:
-          reversi._count.Dark +
-          (reversi._count.Dark > reversi._count.Light
-            ? reversi._count.None
-            : 0),
-        Light:
-          reversi._count.Light +
-          (reversi._count.Light > reversi._count.Dark
-            ? reversi._count.None
-            : 0),
-      }
-    }
-
-    let ret: Count = {
-      None: 0,
-      Dark: -1,
-      Light: -1,
-    }
-
-    for (let i: number = 0; i < this.size; i++) {
-      for (let j: number = 0; j < this.size; j++) {
-        if (this.isReversible(reversi._board, reversi._turn, i, j)) {
-          const r: Count = this.dfs(reversi.put(i, j))
-          if (ret[reversi._turn] < r[reversi._turn]) {
-            ret = r
+      const opposite: Disk = turn === Disk.Dark ? Disk.Light : Disk.Dark
+      return (
+        reversi._count[turn] -
+        reversi._count[opposite] +
+        (reversi._count[turn] > reversi._count[opposite]
+          ? reversi._count.None
+          : 0)
+      )
+    } else if (reversi._turn === turn) {
+      for (let i: number = 0; i < this.size; i++) {
+        for (let j: number = 0; j < this.size; j++) {
+          if (this.isReversible(reversi._board, reversi._turn, i, j)) {
+            alpha = Math.max(
+              alpha,
+              this.alphaBeta(reversi.put(i, j), turn, alpha, beta)
+            )
+            if (alpha >= beta) {
+              return alpha
+            }
           }
         }
       }
+      return alpha
+    } else {
+      for (let i: number = 0; i < this.size; i++) {
+        for (let j: number = 0; j < this.size; j++) {
+          if (this.isReversible(reversi._board, reversi._turn, i, j)) {
+            beta = Math.min(
+              beta,
+              this.alphaBeta(reversi.put(i, j), turn, alpha, beta)
+            )
+            if (alpha >= beta) {
+              return beta
+            }
+          }
+        }
+      }
+      return beta
     }
-
-    return ret
   }
 
   private static isReversible(
