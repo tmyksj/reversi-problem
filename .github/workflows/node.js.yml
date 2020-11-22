@@ -31,12 +31,11 @@ jobs:
 
         git fetch
         git checkout gh-pages
-        rm -rf $(git ls-files)
+        rm -rf $(git ls-files) ./node_modules/ ./static/
 
         cp -rf ./dist/* ./
-        rm -rf ./dist/ ./node_modules/ ./static/
-
-        touch .nojekyll
+        cp -rf ./dist/.nojekyll ./
+        rm -rf ./dist/
 
         git add --all
         git commit --allow-empty --message "[skip ci] Automated commit"
