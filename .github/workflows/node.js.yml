@@ -36,6 +36,8 @@ jobs:
         cp -rf ./dist/* ./
         rm -rf ./dist/ ./node_modules/ ./static/
 
+        touch .nojekyll
+
         git add --all
         git commit --allow-empty --message "[skip ci] Automated commit"
         git push origin gh-pages
