@@ -1,0 +1,41 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - run: DEPLOY_ENV=GH_PAGES yarn install
+    - run: DEPLOY_ENV=GH_PAGES yarn generate --fail-on-error
+    - run: DEPLOY_ENV=GH_PAGES yarn lint
+
+    - name: Deploy to gh-pages
+      if: ${{ success() && github.ref == 'refs/heads/main' }}
+      run: |
+        git config --local author.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local author.name "github-actions[bot]"
+        git config --local committer.email "noreply@github.com"
+        git config --local committer.name "GitHub"
+
+        git fetch
+        git checkout gh-pages
+        rm -rf $(git ls-files)
+
+        cp -rf ./dist/* ./
+        rm -rf ./dist/ ./node_modules/ ./static/
+
+        git add --all
+        git commit --allow-empty --message "[skip ci] Automated commit"
+        git push origin gh-pages
