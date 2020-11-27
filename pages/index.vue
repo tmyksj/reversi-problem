@@ -5,6 +5,7 @@
       <span class="header-term">Problem</span>
     </h1>
     <Hr />
+    <NuxtLink class="button" to="/daily">Daily Problem</NuxtLink>
     <NuxtLink class="button" to="/random">Random Problem</NuxtLink>
   </div>
 </template>
@@ -22,9 +23,18 @@ export default Vue.extend({})
   color: #063c06;
   display: block;
   font-size: 1.4rem;
-  margin: 2rem 0;
+  margin: 1.6rem 0;
+  outline: none;
   padding: 0.8rem 2rem;
   text-decoration: none;
+}
+
+.button:hover {
+  background-color: #edebe9;
+}
+
+.button:focus {
+  box-shadow: 0 0 0.1rem #063c06;
 }
 
 .container {

@@ -11,8 +11,8 @@ import ReversiProblemWorker from '~/assets/javascripts/workers/reversi-problem.w
 export default Vue.extend({
   data() {
     return {
-      sizes: [3, 4, 5, 5, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8],
-      values: [5, 5, 6, 6, 7, 8],
+      sizes: [3, 4, 5, 5, 6, 6, 7, 7, 7, 7, 7, 8, 8, 8, 8, 8],
+      values: [5, 5, 5, 5, 6, 6, 6, 7, 7, 8],
       wins: [1],
       worker: null,
     }
@@ -22,7 +22,7 @@ export default Vue.extend({
     const worker: any = new ReversiProblemWorker()
 
     worker.addEventListener('message', (event: any): void => {
-      this.$router.push('/problem/' + event.data)
+      this.$router.replace('/problem/' + event.data)
     })
 
     worker.postMessage([
