@@ -22,7 +22,7 @@ export default Vue.extend({
     const worker: any = new ReversiProblemWorker()
 
     worker.addEventListener('message', (event: any): void => {
-      this.$router.replace('/problem/' + event.data)
+      this.$router.replace('/p/' + event.data)
     })
 
     worker.postMessage([

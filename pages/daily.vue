@@ -3,7 +3,7 @@
     <NuxtLink
       v-for="daily in dailies"
       :key="daily.id"
-      :to="'/problem/' + daily.id"
+      :to="'/p/' + daily.id"
       class="link"
       >{{ daily.timestamp | format }}</NuxtLink
     >
