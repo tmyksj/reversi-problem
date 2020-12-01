@@ -225,7 +225,9 @@ export class Reversi {
         reversi._count[opposite] +
         (reversi._count[turn] > reversi._count[opposite]
           ? reversi._count.None
-          : 0)
+          : reversi._count[turn] === reversi._count[opposite]
+          ? 0
+          : -reversi._count.None)
       )
     } else if (reversi._turn === turn) {
       for (let i: number = 0; i < this.size; i++) {
