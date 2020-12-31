@@ -183,8 +183,8 @@ export default Vue.extend({
   background-color: #201f1e;
   border-radius: 50%;
   display: block;
-  height: 79%;
-  width: 79%;
+  height: 80%;
+  width: 80%;
 }
 
 .disk-light {
@@ -192,8 +192,8 @@ export default Vue.extend({
   border: 0.1rem solid #0b6a0b;
   border-radius: 50%;
   display: block;
-  height: 76%;
-  width: 76%;
+  height: 80%;
+  width: 80%;
 }
 
 .info-computer {
